@@ -13,12 +13,14 @@
             <router-link 
               to="/" 
               class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              active-class="text-primary-600 border-b-2 border-primary-600"
             >
               Inicio
             </router-link>
             <router-link 
               to="/reservas" 
               class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              active-class="text-primary-600 border-b-2 border-primary-600"
             >
               Mis Reservas
             </router-link>
@@ -36,16 +38,18 @@
     <footer class="bg-white border-t border-gray-200 mt-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <p class="text-center text-gray-600">
-          © 2025 Sistema de Reserva de Espacios Universitarios - Prototipo UI
+          © 2025 Sistema de Reserva de Espacios Universitarios
         </p>
       </div>
     </footer>
+
+    <!-- Contenedor de Notificaciones -->
+    <NotificacionesContainer />
   </div>
 </template>
 
 <script setup>
-// Este es el componente principal de la aplicación
-// Solo incluye la estructura visual sin funcionalidad
+import NotificacionesContainer from './components/NotificacionesContainer.vue'
 </script>
 
 <style scoped>

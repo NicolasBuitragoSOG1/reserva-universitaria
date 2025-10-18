@@ -1,7 +1,7 @@
 {
   "name": "reserva-espacios-universitarios",
-  "version": "1.0.0",
-  "description": "Sistema de Reserva de Espacios Universitarios",
+  "version": "2.1.0",
+  "description": "Sistema de Reserva de Espacios Universitarios - RF1-RF5 + RNF1-RNF5 completos",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "vue": "^3.3.8",
-    "vue-router": "^4.2.5",
-    "@heroicons/vue": "^2.0.18"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",

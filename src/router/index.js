@@ -21,7 +21,7 @@ const routes = [
     component: MisReservas
   },
   {
-    path: '/confirmacion',
+    path: '/confirmacion/:reservaCodigo',
     name: 'Confirmacion',
     component: Confirmacion
   }
