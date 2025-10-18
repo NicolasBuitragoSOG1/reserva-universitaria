@@ -1,26 +1,66 @@
 # Sistema de Reserva de Espacios Universitarios
 
-Prototipo funcional de aplicación web para reservar espacios universitarios (aulas, canchas, laboratorios).
+Aplicación web funcional para reservar espacios universitarios (aulas, canchas, laboratorios) desarrollada con Vue.js 3.
 
-## 🚀 Características
+## ✅ Requisitos Funcionales Implementados
 
-- **Frontend en Vue.js 3**: Interfaz moderna y reactiva
-- **Persistencia Temporal**: Uso de JSON o LocalStorage (sin backend)
-- **Validaciones Básicas**: Formularios con validación visual
-- **Control de Versiones**: Configurado para GitHub
+### RF1: Ver Lista de Espacios Disponibles
+- ✅ El usuario puede ver todos los espacios disponibles
+- ✅ Filtrado por tipo (aula, cancha, laboratorio)
+- ✅ Filtrado por capacidad mínima
+- ✅ Búsqueda por nombre o ubicación
+- ✅ Visualización de información detallada de cada espacio
+
+### RF2: Crear una Reserva
+- ✅ Formulario completo con campos obligatorios:
+  - Nombre completo
+  - Código estudiantil
+  - Email
+  - Teléfono
+  - Fecha (no puede ser anterior a hoy)
+  - Hora de inicio y fin
+  - Número de personas
+  - Propósito de la reserva
+- ✅ Validaciones básicas implementadas
+- ✅ Persistencia en LocalStorage
+
+### RF3: Evitar Reservas Duplicadas
+- ✅ Validación de conflictos de horario
+- ✅ Verificación de mismo espacio, fecha y hora
+- ✅ Mensaje de error claro cuando existe conflicto
+- ✅ Validación de capacidad del espacio
+
+### RF4: Cancelar Reserva
+- ✅ Opción para cancelar reservas desde "Mis Reservas"
+- ✅ Modal de confirmación antes de cancelar
+- ✅ Actualización del estado de la reserva
+- ✅ Mantenimiento del historial de reservas canceladas
+
+### RF5: Mostrar Imagen/Plano del Espacio
+- ✅ Vista de plano desde la página principal
+- ✅ Plano ilustrativo en la confirmación de reserva
+- ✅ Modal para visualizar plano ampliado
+
+## 🚀 Características Adicionales
+
+- **Persistencia con LocalStorage**: Todas las reservas se guardan automáticamente
+- **Sistema de Notificaciones**: Feedback visual para todas las acciones
+- **Gestión de Reservas**: Vista organizada de reservas activas y pasadas
+- **Código de Reserva Único**: Cada reserva tiene un código único generado automáticamente
+- **Interfaz Responsiva**: Diseño adaptable a móviles y escritorio
+- **Validaciones en Tiempo Real**: Feedback inmediato al usuario
 
 ## 📋 Requisitos Previos
 
 - Node.js (versión 16 o superior)
 - npm o yarn
-- Git
+- Git (opcional, para control de versiones)
 
 ## 🛠️ Instalación
 
-1. **Clonar el repositorio**
+1. **Navegar a la carpeta del proyecto**
 ```bash
-git clone <url-del-repositorio>
-cd trabajo-semanal
+cd "C:\Users\nicob\OneDrive\Escritorio\Trabajo semanal"
 ```
 
 2. **Instalar dependencias**
@@ -43,17 +83,25 @@ http://localhost:5173
 ```
 trabajo-semanal/
 ├── src/
-│   ├── views/           # Vistas principales
-│   │   ├── Home.vue            # Página principal con lista de espacios
-│   │   ├── ReservaForm.vue     # Formulario de reserva
-│   │   ├── MisReservas.vue     # Administración de reservas
-│   │   └── Confirmacion.vue    # Confirmación de reserva
-│   ├── router/          # Configuración de rutas
-│   ├── App.vue          # Componente principal
-│   ├── main.js          # Punto de entrada
-│   └── style.css        # Estilos globales
+│   ├── views/                      # Vistas principales
+│   │   ├── Home.vue                # Lista de espacios (RF1)
+│   │   ├── ReservaForm.vue         # Formulario de reserva (RF2)
+│   │   ├── MisReservas.vue         # Gestión de reservas (RF4)
+│   │   └── Confirmacion.vue        # Confirmación con plano (RF5)
+│   ├── composables/                # Lógica reutilizable
+│   │   ├── useReservas.js          # Gestión de reservas y espacios
+│   │   └── useNotificaciones.js    # Sistema de notificaciones
+│   ├── components/                 # Componentes reutilizables
+│   │   └── NotificacionesContainer.vue
+│   ├── router/                     # Configuración de rutas
+│   │   └── index.js
+│   ├── App.vue                     # Componente principal
+│   ├── main.js                     # Punto de entrada
+│   └── style.css                   # Estilos globales
 ├── index.html
 ├── package.json
+├── vite.config.js
+├── tailwind.config.js
 └── README.md
 ```
 
@@ -61,69 +109,70 @@ trabajo-semanal/
 
 - **Vue.js 3** - Framework JavaScript progresivo
 - **Vue Router** - Enrutamiento SPA
+- **Composition API** - Para lógica reactiva y reutilizable
 - **Tailwind CSS** - Framework CSS utility-first
 - **Vite** - Build tool y servidor de desarrollo
+- **LocalStorage API** - Persistencia de datos en el navegador
 - **Heroicons** - Iconos SVG
 
-## 📝 Funcionalidades Implementadas
+## 💾 Gestión de Datos
 
-### ✅ Página Principal (Home)
-- Lista de espacios disponibles (aulas, canchas, laboratorios)
-- Filtros por tipo, capacidad y fecha
-- Tarjetas visuales con información de cada espacio
-- Botones de navegación a reserva
-
-### ✅ Formulario de Reserva
-- Campos para datos personales (nombre, código, email, teléfono)
-- Selección de fecha, hora de inicio y fin
-- Número de personas
-- Propósito de la reserva
-- Términos y condiciones
-- Validaciones básicas
-
-### ✅ Vista de Confirmación
-- Mensaje de éxito
-- Detalles de la reserva
-- Código de reserva generado
-- Información adicional
-- Botones de navegación
-
-### ✅ Mis Reservas
-- Lista de reservas activas y pasadas
-- Estados visuales (Confirmada, Pendiente, Completada)
-- Opciones para ver detalles y cancelar
-- Sistema de tabs para organizar reservas
-
-## 🔄 Control de Versiones (Git)
-
-### Inicializar repositorio
-```bash
-git init
-git add .
-git commit -m "Initial commit: Prototipo UI completo"
+### LocalStorage
+Todas las reservas se almacenan en `localStorage` bajo la clave `'reservas'`:
+```javascript
+// Estructura de una reserva
+{
+  id: "1234567890",
+  codigo: "RES-001-2025",
+  nombre: "Juan Pérez",
+  codigoEstudiantil: "2020123456",
+  email: "juan@universidad.edu",
+  telefono: "3001234567",
+  espacioId: "aula-101",
+  fecha: "2025-10-20",
+  horaInicio: "10:00",
+  horaFin: "12:00",
+  numeroPersonas: 25,
+  proposito: "Clase de programación",
+  estado: "confirmada",
+  cancelada: false,
+  fechaCreacion: "2025-10-15T19:00:00.000Z"
+}
 ```
 
-### Conectar con GitHub
-```bash
-git branch -M main
-git remote add origin <url-repositorio>
-git push -u origin main
-```
+### Espacios Disponibles
+6 espacios predefinidos:
+- 2 Aulas (capacidad 30 y 40 personas)
+- 2 Canchas (Fútbol y Baloncesto)
+- 2 Laboratorios (Computación y Física)
 
-### Flujo de trabajo recomendado
-```bash
-# Crear rama para nueva funcionalidad
-git checkout -b feature/nombre-feature
+## 🔄 Flujo de Uso
 
-# Hacer cambios y commit
-git add .
-git commit -m "Descripción del cambio"
+1. **Ver Espacios** → Usuario navega a la página principal y ve espacios disponibles
+2. **Filtrar** → Puede aplicar filtros por tipo, capacidad o búsqueda
+3. **Ver Plano** → Click en "Ver Plano" para ver ubicación del espacio
+4. **Reservar** → Click en "Reservar Ahora" y completar formulario
+5. **Validación** → Sistema valida que no haya conflictos de horario
+6. **Confirmación** → Muestra código de reserva y detalles
+7. **Gestionar** → Desde "Mis Reservas" puede ver o cancelar reservas
 
-# Subir cambios
-git push origin feature/nombre-feature
+## 🧪 Pruebas Manuales
 
-# Crear Pull Request en GitHub
-```
+### Probar RF2 y RF3 (Crear y Validar Duplicados)
+1. Crear una reserva para "Aula 101" el 2025-10-20 de 10:00 a 12:00
+2. Intentar crear otra reserva para el mismo espacio, fecha y horario
+3. Debería mostrar error: "Ya existe una reserva para este espacio en el horario seleccionado"
+
+### Probar RF4 (Cancelar Reserva)
+1. Ir a "Mis Reservas"
+2. Click en "Cancelar Reserva"
+3. Confirmar en el modal
+4. La reserva debe moverse a "Pasadas" con estado "Cancelada"
+
+### Probar RF5 (Ver Plano)
+1. En la página principal, click en "Ver Plano del Espacio"
+2. Debe abrir un modal con el plano ilustrativo
+3. También visible en la página de confirmación
 
 ## 📦 Comandos Disponibles
 
@@ -136,22 +185,77 @@ npm run build        # Compilar para producción
 npm run preview      # Vista previa de build de producción
 ```
 
-## 🎯 Estado Actual
+## 🔄 Control de Versiones (Git)
 
-**FASE 1 - COMPLETADA**: Interfaz de usuario base sin funcionalidad backend
+### Inicializar repositorio
+```bash
+git init
+git add .
+git commit -m "feat: Implementación completa de requisitos funcionales RF1-RF5"
+```
 
-### ⚠️ Nota Importante
-Este es un **prototipo visual**. Los formularios no guardan datos realmente y la navegación es simulada. En las siguientes fases se implementará:
+### Conectar con GitHub
+```bash
+git branch -M main
+git remote add origin <url-repositorio>
+git push -u origin main
+```
 
-- Backend con API REST
-- Persistencia real de datos
-- Autenticación de usuarios
-- Validaciones del lado del servidor
-- Pruebas automatizadas
+## 🐛 Solución de Problemas
 
-## 👨‍💻 Desarrollo
+### Las reservas no se guardan
+- Verificar que el navegador permita LocalStorage
+- Abrir DevTools → Application → Local Storage
 
-Este proyecto está en desarrollo activo. Se irá actualizando el repositorio de manera incremental.
+### Error al instalar dependencias
+```bash
+npm cache clean --force
+npm install
+```
+
+### Puerto 5173 ocupado
+Editar `vite.config.js` y cambiar el puerto:
+```javascript
+server: {
+  port: 3000  // Cambiar a otro puerto
+}
+```
+
+## 📝 Datos de Prueba
+
+Al iniciar la aplicación por primera vez, no habrá reservas. Puedes:
+1. Crear reservas manualmente desde la interfaz
+2. O importar datos desde DevTools → Console:
+
+```javascript
+// Limpiar todas las reservas
+localStorage.removeItem('reservas')
+
+// La aplicación cargará automáticamente los espacios predefinidos
+```
+
+## 🎯 Estado del Proyecto
+
+**FASE 2 - COMPLETADA**: ✅ Funcionalidad completa con persistencia LocalStorage
+
+### Implementado
+- ✅ RF1: Ver lista de espacios disponibles
+- ✅ RF2: Crear reservas con validaciones
+- ✅ RF3: Prevención de reservas duplicadas
+- ✅ RF4: Cancelar reservas
+- ✅ RF5: Visualización de planos/imágenes
+- ✅ Persistencia con LocalStorage
+- ✅ Sistema de notificaciones
+- ✅ Gestión completa de reservas
+- ✅ Interfaz responsive
+
+### Próximas Mejoras (Opcionales)
+- ⬜ Backend con API REST
+- ⬜ Base de datos real
+- ⬜ Autenticación de usuarios
+- ⬜ Exportar reservas a PDF
+- ⬜ Recordatorios por email
+- ⬜ Pruebas automatizadas
 
 ## 📄 Licencia
 
@@ -159,4 +263,7 @@ Este es un proyecto académico para fines educativos.
 
 ---
 
-**Desarrollado con ❤️ usando Vue.js**
+**Desarrollado con ❤️ usando Vue.js 3**
+
+**Versión:** 2.0.0 (Funcionalidad completa)
+**Última actualización:** Octubre 2025
